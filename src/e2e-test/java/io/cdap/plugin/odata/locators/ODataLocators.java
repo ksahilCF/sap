@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.cdap.plugin.odp.locators;
+package io.cdap.plugin.odata.locators;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,16 +22,46 @@ import org.openqa.selenium.support.How;
 import java.util.List;
 
 /**
- * ODPLocators.
+ * ODataLocators.
  */
 public class ODataLocators {
 
   @FindBy(how = How.XPATH, using = "//*[@data-cy=\"plugin-SapOData-batchsource\"]")
-  public static WebElement sapODPSource;
+  public static WebElement sapODataSource;
 
-//  @FindBy(how = How.XPATH, using = "//*[@title=\"SAP ODP\"]/following-sibling::div")
-//  public static WebElement sapODPProperties;
-//
+  @FindBy(how = How.XPATH, using = "//*[@title=\"SAP OData\"]/following-sibling::div")
+  public static WebElement sapODataProperties;
+
+  @FindBy(how = How.XPATH, using = "//input[@data-cy=\"referenceName\"]")
+  public static WebElement referenceName;
+
+  @FindBy(how = How.XPATH, using = "//input[@data-cy=\"baseURL\"]")
+  public static WebElement baseURL;
+
+  @FindBy(how = How.XPATH, using = "//input[@data-cy=\"serviceName\"]")
+  public static WebElement serviceName;
+
+  @FindBy(how = How.XPATH, using = "//input[@data-cy=\"entityName\"]")
+  public static WebElement entityName;
+
+  @FindBy(how = How.XPATH, using = "//input[@data-cy=\"username\"]")
+  public static WebElement username;
+
+  @FindBy(how = How.XPATH, using = "//input[@data-cy=\"password\"]")
+  public static WebElement password;
+
+  @FindBy(how = How.XPATH, using = "//*[@data-cy=\"get-schema-btn\"]")
+  public static WebElement getSchema;
+
+  @FindBy(how = How.XPATH, using = "//*[@placeholder=\"Field name\"]")
+  public static List<WebElement> schemaFields;
+
+  @FindBy(how = How.XPATH, using = "(//*[@placeholder=\"Field name\"])[2]")
+  public static WebElement schemaFieldSecondRow;
+
+//  @FindBy(how = How.XPATH, using = "//*[data-cy=\"referenceName\"]")
+//  public static WebElement referenceName;
+
 //  @FindBy(how = How.XPATH, using = "//*[@placeholder='Name used to identify this source for lineage']")
 //  public static WebElement referenceName;
 //
@@ -75,7 +105,7 @@ public class ODataLocators {
 //  public static WebElement closeButton;
 //
 //  @FindBy(how = How.XPATH, using = "//*[@data-cy='plugin-endpoint-SapOdp-batchsource-right']")
-//  public static WebElement fromODP;
+//  public static WebElement fromOData;
 //
 //  @FindBy(how = How.XPATH, using = "//*[@value='msgServer']")
 //  public static WebElement loadServer;

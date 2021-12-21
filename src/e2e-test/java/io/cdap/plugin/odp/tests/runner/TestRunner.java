@@ -23,14 +23,14 @@ import org.junit.runner.RunWith;
 /**
  * Test Runner to execute cases.
  */
-@RunWith(Cucumber.class)
-@CucumberOptions(
-  features = {"src/e2e-test/features"},
-  glue = {"io.cdap.plugin.odp.stepsdesign", "stepsdesign"},
-  tags = {"@ODP"},
-  monochrome = true,
-  plugin = {"pretty", "html:target/cucumber-html-report", "json:target/cucumber-reports/cucumber.json",
-    "junit:target/cucumber-reports/cucumber.xml"}
-)
-public class TestRunner {
-}
+//@RunWith(Cucumber.class)
+//@CucumberOptions(
+//  features = {"src/e2e-test/features"},
+//  glue = {"io.cdap.plugin.odp.stepsdesign", "stepsdesign"},
+//  tags = {"@OData"},
+//  monochrome = true,
+//  plugin = {"pretty", "html:target/cucumber-html-report", "json:target/cucumber-reports/cucumber.json",
+//    "junit:target/cucumber-reports/cucumber.xml"}
+//)
+//public class TestRunner {
+//}

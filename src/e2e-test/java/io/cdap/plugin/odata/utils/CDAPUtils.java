@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.cdap.plugin.odp.utils;
+package io.cdap.plugin.odata.utils;
 
 import io.cdap.e2e.utils.SeleniumDriver;
 import org.apache.commons.lang3.StringUtils;
@@ -26,6 +26,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
+
+import static io.cdap.plugin.odata.actions.ODataActions.odataLocators;
 
 /**
  * CDAPUtils.
@@ -51,12 +53,11 @@ public class CDAPUtils {
 
   public static boolean schemaValidation() {
     boolean schemaCreated = false;
-    List<WebElement> elements = SeleniumDriver.getDriver().findElements(By.xpath("//*[@placeholder='Field name']"));
+    List<WebElement> elements = odataLocators.schemaFields;
     if (elements.size() > 2) {
       schemaCreated = true;
-      return schemaCreated;
     }
-    return false;
+    return schemaCreated;
   }
 
   public static String getErrorProp(String errorMessage) {

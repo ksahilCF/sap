@@ -295,12 +295,12 @@
     </dependency>
 
     <!-- tests -->
-    <dependency>
-      <groupId>io.cdap.cdap</groupId>
-      <artifactId>hydrator-test</artifactId>
-      <version>${cdap.version}</version>
-      <scope>test</scope>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>io.cdap.cdap</groupId>-->
+<!--      <artifactId>hydrator-test</artifactId>-->
+<!--      <version>${cdap.version}</version>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>io.cdap.cdap</groupId>
       <artifactId>cdap-data-pipeline</artifactId>
@@ -354,9 +354,10 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.14.1</version>
         <configuration>
-          <argLine>-Xmx3g -Djava.awt.headless=true -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC
+          <argLine>-Xmx3g -Djava.awt.headless=false -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC
             -Djava.net.preferIPv4Stack=true
           </argLine>
+          <!--suppress UnresolvedMavenProperty -->
           <redirectTestOutputToFile>${surefire.redirectTestOutputToFile}</redirectTestOutputToFile>
           <reuseForks>false</reuseForks>
           <reportFormat>plain</reportFormat>
