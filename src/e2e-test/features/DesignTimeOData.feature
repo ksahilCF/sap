@@ -20,11 +20,71 @@ Feature: Design Time OData Scenario
     When Configure Direct Connection "baseURL" "serviceName" "entityName"
     When SAP Username and Password is provided
     Then Validate the Schema is created
+#
+#  @OData @DesignTime-TC-OData-DSGN-02(Direct)
+#  Scenario:User configured direct connection parameters and Security parameters
+#    Given Open CDF application
+#    When Source is SAP OData
+#    When Target is BigQuery for OData data transfer
+#    When Configure Direct Connection "baseURL" "serviceName" "entityName"
+#    When SAP Username and Password is provided
+#    Then Validate the Schema is created
+#    Then Close the OData Properties
+#    Then Enter the BigQuery Properties for OData datasource "tableDemo"
+#    Then Close the BigQuery Properties
+#    Then Link source and target
+#    Then Save and Deploy OData Pipeline
+#    Then Run the OData Pipeline in Runtime
+#    Then Wait till OData pipeline is in running state
+#    Then Open Logs of OData Pipeline
+#    Then Verify the OData pipeline status is "Succeeded"
+#    Then validate successMessage is displayed for the OData pipeline
+#    Then Get Count of no of records transferred from OData to BigQuery in "tableDemo"
+#    Then Verify the Data load transfer is successful
+#    Then Clear the parameters
+#
+#  @OData @DesignTime-TC-OData-DSGN-03(Direct)
+#  Scenario:User configured direct connection parameters and Security parameters Count mismatch
+#    Given Open CDF application
+#    When Source is SAP OData
+#    When Target is BigQuery for OData data transfer
+#    When Configure Direct Connection "baseURL" "serviceName" "entityName"
+#    When SAP Username and Password is provided
+#    Then Validate the Schema is created
+#    Then Close the OData Properties
+#    Then Enter the BigQuery Properties for OData datasource "tableDemo"
+#    Then Close the BigQuery Properties
+#    Then Link source and target
+#    Then Save and Deploy OData Pipeline
+#    Then Run the OData Pipeline in Runtime
+#    Then Wait till OData pipeline is in running state
+#    Then Open Logs of OData Pipeline
+#    Then Verify the OData pipeline status is "Succeeded"
+#    Then validate successMessage is displayed for the OData pipeline
+#    Then Get Count of no of records transferred from OData to BigQuery in "tableDemo"
+#    Then Verify the Data load transfer is successfuls
+#    Then Clear the parameters
 
-  @OData1 @DesignTime-TC-OData-DSGN-01(Direct)
-  Scenario:User configured direct connection parameters and Security parameters
+
+  @ODataRun @RunTime-TC-OData-DSGN-04(Direct)
+  Scenario:User configured Hierarchical OData
     Given Open CDF application
     When Source is SAP OData
-    When Configure Direct Connection "baseURL" "serviceName" "entityName"
+    When Target is BigQuery for OData data transfer
+    When Configure Direct Connection "baseURL" "hierarchyServiceName" "hierarchyEntityName"
     When SAP Username and Password is provided
+#    Then Fill Filter Options as "filer"
+#    Then Fill Select Fields as "select"
+#    Then Fill Expand Fields as "to_Text"
+#    Then Fill Number of Rows to Skip as "10"
+#    Then Fill Number of Rows to Fetch as "100"
+#    Then Fill Number of Splits to Generate as "8"
+#    Then Fill Batch Size as "5000"
     Then Validate the Schema is created
+    Then Close the OData Properties
+    Then Enter the BigQuery Properties for OData datasource "tableDemo"
+    Then Close the BigQuery Properties
+    Then Link source and target
+    Then Click on Preview and run
+
+    Then Validate Preview is generated

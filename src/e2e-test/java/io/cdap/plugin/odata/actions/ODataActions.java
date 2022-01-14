@@ -69,6 +69,39 @@ public class ODataActions {
   public static void getSchema() {
     odataLocators.getSchema.click();
   }
+
+  public static void closeProperty() {
+    odataLocators.closeProperty.click();
+  }
+
+  public static void skipRowCount(String skipRowCount){
+    odataLocators.skipRowCount.sendKeys(skipRowCount);
+  }
+
+  public static void expandOption(String expandOption){
+    odataLocators.expandOption.sendKeys(expandOption);
+  }
+
+  public static void numRowsToFetch(String numRowsToFetch){
+    odataLocators.numRowsToFetch.sendKeys(numRowsToFetch);
+  }
+
+  public static void splitCount(String splitCount){
+
+    odataLocators.splitCount.sendKeys(splitCount);
+  }
+
+  public static void filterOption(String filterOption){
+    odataLocators.filterOption.sendKeys(filterOption);
+  }
+
+  public static void batchSize(String batchSize){
+    odataLocators.batchSize.sendKeys(batchSize);
+  }
+
+  public static void selectOption(String selectOption){
+    odataLocators.selectOption.sendKeys(selectOption);
+  }
 //
 //  public static void enterDirectConnectionProperties(String client, String sysnr, String asHost, String dsName
 //    , String gcsPath, String splitRow, String packSize) throws IOException, InterruptedException {

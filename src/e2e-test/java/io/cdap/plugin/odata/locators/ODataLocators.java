@@ -59,6 +59,44 @@ public class ODataLocators {
   @FindBy(how = How.XPATH, using = "(//*[@placeholder=\"Field name\"])[2]")
   public static WebElement schemaFieldSecondRow;
 
+  @FindBy(how = How.XPATH, using = "//*[@data-testid=\"close-config-popover\"]")
+  public static WebElement closeProperty;
+
+  @FindBy(how = How.XPATH, using = "//*[@data-cy='plugin-endpoint-SapOData-batchsource-right']")
+  public static WebElement fromODP;
+
+  @FindBy(how = How.XPATH, using = "//*[@data-cy='Succeeded']")
+  public static List<WebElement> succeeded;
+
+  @FindBy(how = How.XPATH, using = "//*[@data-cy='Failed']")
+  public static WebElement failed;
+
+  @FindBy(how = How.XPATH, using = "//input[@data-cy='skipRowCount']")
+  public static WebElement skipRowCount;
+
+
+  @FindBy(how = How.XPATH, using = "//input[@data-cy='expandOption']")
+  public static WebElement expandOption;
+
+
+  @FindBy(how = How.XPATH, using = "//input[@data-cy='numRowsToFetch']")
+  public static WebElement numRowsToFetch;
+
+
+  @FindBy(how = How.XPATH, using = "//input[@data-cy='splitCount']")
+  public static WebElement splitCount;
+
+
+  @FindBy(how = How.XPATH, using = "//input[@data-cy='batchSize']")
+  public static WebElement batchSize;
+
+  @FindBy(how = How.XPATH, using = "//textarea[@data-cy='filterOption']")
+  public static WebElement filterOption;
+
+  @FindBy(how = How.XPATH, using = "//textarea[@data-cy='selectOption']")
+  public static WebElement selectOption;
+
+
 //  @FindBy(how = How.XPATH, using = "//*[data-cy=\"referenceName\"]")
 //  public static WebElement referenceName;
 
@@ -101,7 +139,7 @@ public class ODataLocators {
 //  @FindBy(how = How.XPATH, using = "//*[@name='extractType' and @value='Sync']")
 //  public static WebElement syncRadio;
 //
-//  @FindBy(how = How.XPATH, using = "//*[@class='fa fa-remove']")
+//  @FindBy(how = How.XPATH, using = "c")
 //  public static WebElement closeButton;
 //
 //  @FindBy(how = How.XPATH, using = "//*[@data-cy='plugin-endpoint-SapOdp-batchsource-right']")
