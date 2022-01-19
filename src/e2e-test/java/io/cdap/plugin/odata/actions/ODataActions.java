@@ -74,81 +74,32 @@ public class ODataActions {
     odataLocators.closeProperty.click();
   }
 
-  public static void skipRowCount(String skipRowCount){
+  public static void skipRowCount(String skipRowCount) {
     odataLocators.skipRowCount.sendKeys(skipRowCount);
   }
 
-  public static void expandOption(String expandOption){
+  public static void expandOption(String expandOption) {
     odataLocators.expandOption.sendKeys(expandOption);
   }
 
-  public static void numRowsToFetch(String numRowsToFetch){
+  public static void numRowsToFetch(String numRowsToFetch) {
     odataLocators.numRowsToFetch.sendKeys(numRowsToFetch);
   }
 
-  public static void splitCount(String splitCount){
+  public static void splitCount(String splitCount) {
 
     odataLocators.splitCount.sendKeys(splitCount);
   }
 
-  public static void filterOption(String filterOption){
+  public static void filterOption(String filterOption) {
     odataLocators.filterOption.sendKeys(filterOption);
   }
 
-  public static void batchSize(String batchSize){
+  public static void batchSize(String batchSize)  {
     odataLocators.batchSize.sendKeys(batchSize);
   }
 
-  public static void selectOption(String selectOption){
+  public static void selectOption(String selectOption) {
     odataLocators.selectOption.sendKeys(selectOption);
   }
-//
-//  public static void enterDirectConnectionProperties(String client, String sysnr, String asHost, String dsName
-//    , String gcsPath, String splitRow, String packSize) throws IOException, InterruptedException {
-//    odataLocators.referenceName.sendKeys(UUID.randomUUID().toString());
-//    odataLocators.sapClient.sendKeys(CDAPUtils.getPluginProp(client));
-//    odataLocators.systemNumber.sendKeys(CDAPUtils.getPluginProp(sysnr));
-//    odataLocators.sapApplicationServerHost.sendKeys(CDAPUtils.getPluginProp(asHost));
-//    odataLocators.dataSourceName.sendKeys(CDAPUtils.getPluginProp(dsName));
-//    js.executeScript("window.scrollBy(0,350)", StringUtils.EMPTY);
-//    odataLocators.gcsPath.sendKeys(CDAPUtils.getPluginProp(gcsPath));
-//    odataLocators.splitRow.sendKeys(CDAPUtils.getPluginProp(splitRow));
-//    odataLocators.packageSize.sendKeys(null != CDAPUtils.getPluginProp(packSize) ?
-//                                       CDAPUtils.getPluginProp(packSize) : StringUtils.EMPTY);
-//  }
-//
-//  public static void enterLoadConnectionProperties(String client, String asHost, String msServ, String systemID,
-//                                                   String lgrp, String dsName, String gcsPath, String splitrow,
-//                                                   String packageSize) throws IOException, InterruptedException {
-//    odataLocators.referenceName.sendKeys(UUID.randomUUID().toString());
-//    odataLocators.sapClient.sendKeys(CDAPUtils.getPluginProp(client));
-//    odataLocators.loadServer.click();
-//    odataLocators.msHost.sendKeys(CDAPUtils.getPluginProp(asHost));
-//    odataLocators.portNumber.sendKeys(CDAPUtils.getPluginProp(msServ));
-//    odataLocators.systemID.sendKeys(CDAPUtils.getPluginProp(systemID));
-//    odataLocators.logonGroup.sendKeys(CDAPUtils.getPluginProp(lgrp));
-//    odataLocators.dataSourceName.sendKeys(CDAPUtils.getPluginProp(dsName));
-//
-//    js.executeScript("window.scrollBy(0,350)", StringUtils.EMPTY);
-//    odataLocators.gcsPath.sendKeys(CDAPUtils.getPluginProp(gcsPath));
-//    odataLocators.splitRow.sendKeys(CDAPUtils.getPluginProp(splitrow));
-//    odataLocators.packageSize.sendKeys(CDAPUtils.getPluginProp(packageSize));
-//  }
-//
-//  public static void enterUserNamePassword(String username, String password) throws IOException {
-//    odataLocators.usernameCredentials.sendKeys(username);
-//    odataLocators.passwordCredentials.sendKeys(password);
-//  }
-//
-//  public static void selectSync() {
-//    odataLocators.syncRadio.click();
-//  }
-//
-//  public static void getSchema() {
-//    odataLocators.getSchemaButton.click();
-//  }
-//
-//  public static void closeButton() {
-//    odataLocators.closeButton.click();
-//  }
 }

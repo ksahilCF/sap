@@ -60,6 +60,18 @@ public class CDAPUtils {
     return schemaCreated;
   }
 
+  public static String getParsedLogs(String rawLog, String parsingText) {
+    String parsedTxt =  null, value = null;
+    parsedTxt = rawLog.substring(rawLog.indexOf(parsingText) + parsingText.length() ,
+            rawLog.indexOf(parsingText) + parsingText.length() + 10);
+    if (parsedTxt.length() <= 1) {
+      return "0";
+    } else {
+      value = parsedTxt.substring(0, parsedTxt.indexOf("\n"));
+      return value;
+    }
+  }
+
   public static String getErrorProp(String errorMessage) {
     return errorProp.getProperty(errorMessage);
   }
