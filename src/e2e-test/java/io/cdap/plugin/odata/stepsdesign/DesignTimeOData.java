@@ -75,7 +75,7 @@ public class DesignTimeOData implements CdfHelper {
     @Then("^Validate the Schema is created$")
     public void validate_the_schema_is_created() {
         ODataActions.getSchema();
-        WebDriverWait wait = new WebDriverWait(SeleniumDriver.getDriver(), 10000);
+        WebDriverWait wait = new WebDriverWait(SeleniumDriver.getDriver(), 120);
         wait.until(ExpectedConditions.visibilityOf(odataLocators.schemaFieldSecondRow));
         Assert.assertEquals(true, CDAPUtils.schemaValidation());
     }
@@ -164,4 +164,10 @@ public class DesignTimeOData implements CdfHelper {
         ODataActions.batchSize(batch);
     }
 
+
+    @When("^Fill certificate Path \"([^\"]*)\" and paraphrase \"([^\"]*)\"$")
+    public void fill_certificate_path_something_and_paraphrase_something(String certPath, String paraphrase) throws IOException {
+        ODataActions.certGcsPath(CDAPUtils.getPluginProp(certPath));
+        ODataActions.certPassphrase(CDAPUtils.getPluginProp(paraphrase));
+    }
 }

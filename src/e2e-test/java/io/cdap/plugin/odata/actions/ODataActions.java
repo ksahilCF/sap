@@ -70,6 +70,9 @@ public class ODataActions {
     odataLocators.getSchema.click();
   }
 
+  public static void validateConnection(){
+    odataLocators.validate.click();
+  }
   public static void closeProperty() {
     odataLocators.closeProperty.click();
   }
@@ -101,5 +104,29 @@ public class ODataActions {
 
   public static void selectOption(String selectOption) {
     odataLocators.selectOption.sendKeys(selectOption);
+  }
+
+  public static String rowErrorColor() {
+    return odataLocators.rowError.getCssValue("border-color");
+  }
+
+  public static String rowErrorMessage() {
+    return odataLocators.rowError.getText();
+  }
+
+  public static String errorMessage() {
+    return ODataLocators.errorMessage.getText();
+  }
+
+  public static void previewData() {
+    odataLocators.previewData.click();
+  }
+
+  public static void certGcsPath(String certGcsPath) {
+    odataLocators.certGcsPath.sendKeys(certGcsPath);
+  }
+
+  public static void certPassphrase(String certPassphrase) {
+    odataLocators.certPassphrase.sendKeys(certPassphrase);
   }
 }

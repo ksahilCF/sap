@@ -17,20 +17,24 @@ package io.cdap.plugin.odata.stepsdesign;
 
 import io.cdap.e2e.pages.actions.CdfLogActions;
 import io.cdap.e2e.pages.actions.CdfPipelineRunAction;
+import io.cdap.e2e.pages.actions.CdfStudioActions;
 import io.cdap.e2e.utils.CdfHelper;
 import io.cdap.e2e.utils.GcpClient;
 import io.cdap.e2e.utils.SeleniumDriver;
 import io.cdap.e2e.utils.SeleniumHelper;
+import io.cdap.plugin.odata.actions.ODataActions;
 import io.cdap.plugin.odata.utils.CDAPUtils;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import stepsdesign.BeforeActions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * DesignTimeOData.
@@ -57,6 +61,19 @@ public class RunTimeOData implements CdfHelper {
         wait.until(ExpectedConditions.or(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@data-cy='Succeeded']")),
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@data-cy='Failed']"))));
+    }
+
+    @Then("^Wait till preview pipeline is in running state$")
+    public void wait_till_preview_pipeline_is_in_running_state() {
+        WebDriverWait wait = new WebDriverWait(SeleniumDriver.getDriver(), 1000000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='fa fa-play text-success']")));
+    }
+
+    @Then("^Verify preview data is present$")
+    public void verify_preview_data_is_present() {
+        ODataActions.previewData();
+        List<WebElement> previewRowcount= SeleniumDriver.getDriver().findElements(By.xpath("//*[@data-cy=\"preview-data-row\"]"));
+        Assert.assertTrue(previewRowcount.size()>1);
     }
 
     @Then("^Open Logs of OData Pipeline$")

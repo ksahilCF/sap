@@ -52,8 +52,9 @@ public class DesignTimeODPError {
     CDAPUtils.clearField(elementIn);
     elementIn.sendKeys(input);
     ODPLocators.validateButton.click();
-    errorExist = CDAPUtils.getErrorProp(errorMessage).toLowerCase().contains(ODPLocators.jcoError.getText()
-                                                                               .toLowerCase());
+    errorExist = CDAPUtils.getErrorProp(errorMessage).toLowerCase()
+            .contains(ODPLocators.jcoError.getText()
+                    .toLowerCase());
     Assert.assertTrue(errorExist);
   }
 

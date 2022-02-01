@@ -29,8 +29,11 @@ public class ODataLocators {
   @FindBy(how = How.XPATH, using = "//*[@data-cy=\"plugin-SapOData-batchsource\"]")
   public static WebElement sapODataSource;
 
-  @FindBy(how = How.XPATH, using = "//*[@title=\"SapOData\"]/following-sibling::div")
+  @FindBy(how = How.XPATH, using = "//*[@title=\"SAP OData\"]/following-sibling::div")
   public static WebElement sapODataProperties;
+
+  @FindBy(how = How.XPATH, using = "//*[contains(text(), 'Validate')]")
+  public static WebElement validate;
 
   @FindBy(how = How.XPATH, using = "//input[@data-cy=\"referenceName\"]")
   public static WebElement referenceName;
@@ -62,7 +65,7 @@ public class ODataLocators {
   @FindBy(how = How.XPATH, using = "//*[@data-testid=\"close-config-popover\"]")
   public static WebElement closeProperty;
 
-  @FindBy(how = How.XPATH, using = "//*[@data-cy='plugin-endpoint-SAP OData-batchsource-right']")
+  @FindBy(how = How.XPATH, using = "//*[@data-cy=\"plugin-endpoint-SapOData-batchsource-right\"]")
   public static WebElement fromOData;
 
   @FindBy(how = How.XPATH, using = "//*[@data-cy='Succeeded']")
@@ -91,4 +94,19 @@ public class ODataLocators {
 
   @FindBy(how = How.XPATH, using = "//textarea[@data-cy='selectOption']")
   public static WebElement selectOption;
+
+  @FindBy(how = How.XPATH, using = "//*[@data-cy='property-row-error']")
+  public static WebElement rowError;
+
+  @FindBy(how = How.XPATH, using = "//*[@class='text-danger']")
+  public static WebElement errorMessage;
+
+  @FindBy(how = How.XPATH, using = "(//*[contains(text(),'Preview')])[2]")
+  public static WebElement previewData;
+
+  @FindBy(how = How.XPATH, using = "//input[@data-cy='certGcsPath']")
+  public static WebElement certGcsPath;
+
+  @FindBy(how = How.XPATH, using = "//input[@data-cy='certPassphrase']")
+  public static WebElement certPassphrase;
 }

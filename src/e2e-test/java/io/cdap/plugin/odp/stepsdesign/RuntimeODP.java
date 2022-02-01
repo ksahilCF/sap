@@ -212,6 +212,7 @@ public class RuntimeODP implements CdfHelper {
       ObjectNode objectNode = mapper.createObjectNode();
       objectNode.put(action, recordcount);
       JsonNode response = sapAdapterImpl.executeRFC(objectNode.toString(), opProps, "", "");
+      System.out.println(response.asText());
       noOfRecords = Integer.parseInt(response.get("EX_COUNT").asText());
       Iterator<JsonNode> iteratedData = response.get("EX_DATA").iterator();
       while (iteratedData.hasNext()) {
@@ -226,7 +227,7 @@ public class RuntimeODP implements CdfHelper {
     } catch (Exception e) {
       throw SystemException.throwException(e.getMessage(), e);
     }
-    Thread.sleep(60000); //sleep required to wait for SAP record creation
+    Thread.sleep(6000); //sleep required to wait for SAP record creation
   }
 
   @Then("Enter the BigQuery Properties for ODP datasource {string}")

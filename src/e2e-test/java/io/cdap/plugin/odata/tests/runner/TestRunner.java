@@ -27,8 +27,9 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
   features = {"src/e2e-test/features"},
   glue = {"io.cdap.plugin.odata.stepsdesign", "stepsdesign"},
-  tags = {"@OData"},
-  monochrome = true,
+  tags = {"@Sanity"},
+//        tags = {"@OData"},
+        monochrome = true,
   plugin = {"pretty", "html:target/cucumber-html-report", "json:target/cucumber-reports/cucumber.json",
     "junit:target/cucumber-reports/cucumber.xml"}
 )
