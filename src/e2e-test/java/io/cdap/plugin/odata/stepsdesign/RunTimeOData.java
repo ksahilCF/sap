@@ -15,6 +15,15 @@
  */
 package io.cdap.plugin.odata.stepsdesign;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.adapter.connector.SAPAdapterImpl;
+import com.google.adapter.connector.SAPProperties;
+import com.google.adapter.exceptions.SystemException;
+import com.google.adapter.util.ErrorCapture;
+import com.google.adapter.util.ExceptionUtils;
+import com.sap.conn.jco.JCoException;
 import io.cdap.e2e.pages.actions.CdfLogActions;
 import io.cdap.e2e.pages.actions.CdfPipelineRunAction;
 import io.cdap.e2e.pages.actions.CdfStudioActions;
@@ -34,7 +43,9 @@ import stepsdesign.BeforeActions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.*;
+
+import static io.cdap.plugin.odp.utils.AutoConstants.*;
 
 /**
  * DesignTimeOData.
@@ -146,4 +157,42 @@ public class RunTimeOData implements CdfHelper {
         Assert.assertTrue(Integer.valueOf(CDAPUtils.getParsedLogs(rawLog,
                 CDAPUtils.getPluginProp(parameter))) > Integer.valueOf(val));
     }
+
+
+    //TODO
+    static String action;
+    private SAPProperties sapProps;
+    private ErrorCapture errorCapture;
+    private SAPAdapterImpl sapAdapterImpl;
+    private ExceptionUtils exceptionUtils;
+    private List<String> fields = new ArrayList<>();
+    static int dsRecordsCount;
+    private static Properties connection = new SAPProperties();
+    static int noOfRecords;
+
+    @Then("{string} the {string} records with {string} in the OData datasource from JCO")
+    public void createTheRecordsInTheODPDatasourceFromJCO(String process, String recordcount, String rfcName)
+            throws IOException, JCoException, InterruptedException {
+
+        sapProps = SAPProperties.getDefault(connection);
+        errorCapture = new ErrorCapture(exceptionUtils);
+        sapAdapterImpl = new SAPAdapterImpl(errorCapture, connection);
+        Map opProps = new HashMap<>();
+        opProps.put("RFC", "ZRFM_LTRC_OPERATIONS");
+        opProps.put("autoCommit", "true");
+        try {
+
+            ObjectMapper mapper = new ObjectMapper();
+            ObjectNode objectNode = mapper.createObjectNode();
+            objectNode.put("IM_MTID","01H");
+            objectNode.put("IM_TABLES","ADR6");
+            objectNode.put("IM_START_LOAD","X");
+            JsonNode response = sapAdapterImpl.executeRFC(objectNode.toString(), opProps, "", "");
+            System.out.println(response.asText());
+        } catch (Exception e) {
+            throw SystemException.throwException(e.getMessage(), e);
+        }
+        Thread.sleep(6000); //sleep required to wait for SAP record creation
+    }
+
 }

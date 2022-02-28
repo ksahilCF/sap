@@ -34,7 +34,6 @@ import io.cdap.e2e.pages.actions.CdfBigQueryPropertiesActions;
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import static io.cdap.e2e.pages.actions.CdfStudioActions.runAndPreviewData;
 import static io.cdap.plugin.odata.actions.ODataActions.odataLocators;

@@ -53,12 +53,6 @@ public class ODataActions {
     odataLocators.serviceName.sendKeys(CDAPUtils.getPluginProp(serviceName));
     odataLocators.entityName.sendKeys(CDAPUtils.getPluginProp(entityName));
 
-//    odataLocators.dataSourceName.sendKeys(CDAPUtils.getPluginProp(dsName));
-//    js.executeScript("window.scrollBy(0,350)", StringUtils.EMPTY);
-//    odataLocators.gcsPath.sendKeys(CDAPUtils.getPluginProp(gcsPath));
-//    odataLocators.splitRow.sendKeys(CDAPUtils.getPluginProp(splitRow));
-//    odataLocators.packageSize.sendKeys(null != CDAPUtils.getPluginProp(packSize) ?
-//                                       CDAPUtils.getPluginProp(packSize) : StringUtils.EMPTY);
   }
 
   public static void enterUserNamePassword(String user, String pass) throws IOException {

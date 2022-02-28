@@ -188,6 +188,27 @@ public class RuntimeODP implements CdfHelper {
     SeleniumHelper.dragAndDrop(ODPLocators.fromODP, CdfStudioLocators.toBigQiery);
   }
 
+  @Then("Record count in {string} table")
+  public void totalRecCount(String table)
+          throws IOException, JCoException, InterruptedException {
+    sapProps = SAPProperties.getDefault(connection);
+    errorCapture = new ErrorCapture(exceptionUtils);
+    sapAdapterImpl = new SAPAdapterImpl(errorCapture, connection);
+    Map opProps = new HashMap<>();
+    opProps.put("RFC", "ZFM_TABLE_COUNT");
+    opProps.put("autoCommit", "true");
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      ObjectNode objectNode = mapper.createObjectNode();
+      objectNode.put("IM_TABLE","EKKO");
+      JsonNode response = sapAdapterImpl.executeRFC(objectNode.toString(), opProps, "", "");
+      System.out.println("Response : "+response.toString());
+    } catch (Exception e) {
+      throw SystemException.throwException(e.getMessage(), e);
+    }
+    Thread.sleep(6000); //sleep required to wait for SAP record creation
+
+  }
   @Then("{string} the {string} records with {string} in the ODP datasource from JCO")
   public void createTheRecordsInTheODPDatasourceFromJCO(String process, String recordcount, String rfcName)
     throws IOException, JCoException, InterruptedException {
@@ -203,31 +224,70 @@ public class RuntimeODP implements CdfHelper {
     sapProps = SAPProperties.getDefault(connection);
     errorCapture = new ErrorCapture(exceptionUtils);
     sapAdapterImpl = new SAPAdapterImpl(errorCapture, connection);
+
+
+//    Map opProps = new HashMap<>();
+//    opProps.put("RFC", "ZFM_TABLE_COUNT");
+//    opProps.put("autoCommit", "true");
+//    try {
+//
+//      ObjectMapper mapper = new ObjectMapper();
+//      ObjectNode objectNode = mapper.createObjectNode();
+//      objectNode.put("IM_TABLE","ADR6");
+//      JsonNode response = sapAdapterImpl.executeRFC(objectNode.toString(), opProps, "", "");
+//      System.out.println("Response : "+response.toString());
+//    } catch (Exception e) {
+//      throw SystemException.throwException(e.getMessage(), e);
+//    }
+//    Thread.sleep(6000); //sleep required to wait for SAP record creation
+
     Map opProps = new HashMap<>();
-    opProps.put("RFC", CDAPUtils.getPluginProp(rfcName));
-    opProps.put("autoCommit", "true");
+    opProps.put("RFC", "ZRFM_LTRC_OPERATIONS");
     try {
 
       ObjectMapper mapper = new ObjectMapper();
       ObjectNode objectNode = mapper.createObjectNode();
-      objectNode.put(action, recordcount);
+      objectNode.put("IM_MTID","019");
+      objectNode.put("IM_TABLES","MARA3423c");
+//      objectNode.put("IM_START_LOAD","X");
+      objectNode.put("IM_START_REPL","X");
+//      objectNode.put("IM_START_REP_ONLY","X");
+//      objectNode.put("IM_STOP_REPLICATION","X");
+//      objectNode.put("IM_START_RECORD","X");
+
       JsonNode response = sapAdapterImpl.executeRFC(objectNode.toString(), opProps, "", "");
-      System.out.println(response.asText());
-      noOfRecords = Integer.parseInt(response.get("EX_COUNT").asText());
-      Iterator<JsonNode> iteratedData = response.get("EX_DATA").iterator();
-      while (iteratedData.hasNext()) {
-        JsonNode object = iteratedData.next();
-        Iterator<String> fieldName = object.fieldNames();
-        if (fieldName.hasNext()) {
-          fields.add(object.get(fieldName.next()).asText());
-        }
-      }
-      BeforeActions.scenario.write("No of records :-" + noOfRecords + Arrays.toString(fields.toArray()));
-      Assert.assertEquals(noOfRecords, Integer.parseInt(recordcount));
+      System.out.println("response"+response.toString());
     } catch (Exception e) {
       throw SystemException.throwException(e.getMessage(), e);
     }
     Thread.sleep(6000); //sleep required to wait for SAP record creation
+
+
+//    Map opProps = new HashMap<>();
+//    opProps.put("RFC", CDAPUtils.getPluginProp(rfcName));
+//    opProps.put("autoCommit", "true");
+//    try {
+//
+//      ObjectMapper mapper = new ObjectMapper();
+//      ObjectNode objectNode = mapper.createObjectNode();
+//      objectNode.put(action, recordcount);
+//      JsonNode response = sapAdapterImpl.executeRFC(objectNode.toString(), opProps, "", "");
+//      System.out.println(response.asText());
+//      noOfRecords = Integer.parseInt(response.get("EX_COUNT").asText());
+//      Iterator<JsonNode> iteratedData = response.get("EX_DATA").iterator();
+//      while (iteratedData.hasNext()) {
+//        JsonNode object = iteratedData.next();
+//        Iterator<String> fieldName = object.fieldNames();
+//        if (fieldName.hasNext()) {
+//          fields.add(object.get(fieldName.next()).asText());
+//        }
+//      }
+//      BeforeActions.scenario.write("No of records :-" + noOfRecords + Arrays.toString(fields.toArray()));
+//      Assert.assertEquals(noOfRecords, Integer.parseInt(recordcount));
+//    } catch (Exception e) {
+//      throw SystemException.throwException(e.getMessage(), e);
+//    }
+//    Thread.sleep(6000); //sleep required to wait for SAP record creation
   }
 
   @Then("Enter the BigQuery Properties for ODP datasource {string}")
