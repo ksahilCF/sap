@@ -14,10 +14,10 @@
 Feature: Design Time SLT Scenario
 
   @SLT @Design-Time @Sanity
-  Scenario Outline: User is able to provides i/p to SLT parameters
+  Scenario Outline: User is able to provides input to SLT parameters
     Given Open CDF replication and initiate pipeline creation
     When Source is SAP SLT
-    Then User is able to set SLT parameter <option> as <input>
+    Then User is able to set SLT parameter "<option>" as "<input>"
     Examples:
       | option            | input         |
       | gcsDataPath       | invalid       |
@@ -44,10 +44,10 @@ Feature: Design Time SLT Scenario
     Then Suspend Slt Job is set to true
 
   @SLT @Design-Time @Sanity
-  Scenario Outline: User is able tovconfigured job for "<table>"
+  Scenario Outline: User is able to configured job for "<table>"
     When User crates new MTID on "Automation" SAP
-    When User updates mtid config in /GOOG/CDF_R_SLT_SETTINGS program
-    Then Update mass transfer id table: "<table>" job mode to "start_recording"
+    When User updates mtid config in CDF_R_SLT_SETTINGS program
+    Then Update mass transfer id table: "<table>" job mode to "replication"
     Given Open CDF replication and initiate pipeline creation
     When Source is SAP SLT fill connection parameters
     Then Click on next
@@ -61,13 +61,13 @@ Feature: Design Time SLT Scenario
     Then Update mass transfer id table: "<table>" job mode to "stop_load"
     Examples:
       | table |
-      | t002 |
-      | acdoca  |
+      | vbap |
+      | ekko  |
 
 #  @SLT @Design-Time @Sanity
 #  Scenario Outline: User configured SLT job in LTRC for "<table>" and executes pipeline in "<mode>"
 #    When User crates new MTID on "Automation" SAP
-#    When User updates mtid config in /GOOG/CDF_R_SLT_SETTINGS program
+#    When User updates mtid config in CDF_R_SLT_SETTINGS program
 #    Then Update mass transfer id table: "<table>" job mode to "stop_load"
 #    Given Open CDF replication and initiate pipeline creation
 #    When User fetches the record count of table : "<table>" from SAP
@@ -99,7 +99,7 @@ Feature: Design Time SLT Scenario
 #  @SLT @Design-Time @Sanity
 #  Scenario Outline: User configured SLT job for table containing all data types
 #    When User crates new MTID on "Automation" SAP
-#    When User updates mtid config in /GOOG/CDF_R_SLT_SETTINGS program
+#    When User updates mtid config in CDF_R_SLT_SETTINGS program
 #    Then Update mass transfer id table: "<table>" job mode to "stop_load"
 #    Given Open CDF replication and initiate pipeline creation
 #    When User fetches the record count of table : "<table>" from SAP
@@ -131,7 +131,7 @@ Feature: Design Time SLT Scenario
 #  @SLT @Design-Time @Sanity
 #  Scenario Outline: User configured SLT job in LTRC and executes pipeline in Replication
 #    When User crates new MTID on "Automation" SAP
-#    When User updates mtid config in /GOOG/CDF_R_SLT_SETTINGS program
+#    When User updates mtid config in CDF_R_SLT_SETTINGS program
 #    Then Update mass transfer id table: "<table>" job mode to "stop_load"
 #    Given Open CDF replication and initiate pipeline creation
 #    When User fetches the record count of table : "<table>" from SAP

@@ -115,7 +115,7 @@ private static String parent=null;
 
     @Then("^Set Dummy MTID")
     public void setDummyMTID(){
-        mt_id="032";
+        mt_id="02K";
     }
 
 
@@ -167,7 +167,7 @@ private static String parent=null;
         Assert.assertTrue(color.toLowerCase().contains("rgb(209, 86, 104)"));
     }
 
-    @Then("^User is able to set SLT parameter (.+) as (.+)$")
+    @Then("^User is able to set SLT parameter \"([^\"]*)\" as \"([^\"]*)\"$")
     public void userIsAbleToSetSLTParameter(
             String option, String input) {
 
@@ -227,7 +227,7 @@ private static String parent=null;
     sltLocators.Logs.click();
       parent = SeleniumDriver.getDriver().getWindowHandle();
         tabs = new ArrayList(SeleniumDriver.getDriver().getWindowHandles());
-        CDFDriver.switchTo().window((String)tabs.get(1));
+        CDFDriver.switchTo().window((String)tabs.get(tabs.indexOf(parent)+1));
         sltLocators.AdvancedLogs.click();
     }
 
@@ -284,7 +284,7 @@ private static String parent=null;
         Storage storage = StorageOptions.newBuilder().setProjectId(CDAPUtils.getPluginProp("gcpProjectId")).build().getService();
         Page<Blob> blobs =storage.list(
                 CDAPUtils.getPluginProp("gcsDataPath").replaceAll("gs://",""),
-                Storage.BlobListOption.prefix("030"+"/"+table));
+                Storage.BlobListOption.prefix(mt_id+"/"+table));
         for (Blob blob : blobs.iterateAll()) {
             System.out.println(blob.getName());
             storage.delete(CDAPUtils.getPluginProp("gcsDataPath").replaceAll("gs://",""),
@@ -438,7 +438,7 @@ private static String parent=null;
         }
     }
 
-    @When("^User updates mtid config in /GOOG/CDF_R_SLT_SETTINGS program$")
+    @When("^User updates mtid config in CDF_R_SLT_SETTINGS program$")
     public void user_updates_mtid_in_program()
             throws JCoException, InterruptedException {
 

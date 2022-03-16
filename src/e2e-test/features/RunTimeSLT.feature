@@ -11,17 +11,17 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations under
 # the License.
-Feature:Run Time SLT Scenario
+Feature:Run-Time SLT Scenario
 
   @SLT @Run-Time @Sanity
-  Scenario: User is able to create MTID and update /GOOG/CDF_R_SLT_SETTINGS program
+  Scenario: User is able to create MTID and update CDF_R_SLT_SETTINGS program
     When User crates new MTID on "Automation" SAP
-    When User updates mtid config in /GOOG/CDF_R_SLT_SETTINGS program
+    When User updates mtid config in CDF_R_SLT_SETTINGS program
 
-  @SLT @Design-Time @Sanity
+  @SLT @Run-Time @Sanity
   Scenario Outline: User configured SLT job for table containing all data types
     When User crates new MTID on "Automation" SAP
-    When User updates mtid config in /GOOG/CDF_R_SLT_SETTINGS program
+    When User updates mtid config in CDF_R_SLT_SETTINGS program
     Then Update mass transfer id table: "<table>" job mode to "stop_load"
     Given Open CDF replication and initiate pipeline creation
     When User fetches the record count of table : "<table>" from SAP
@@ -40,6 +40,7 @@ Feature:Run Time SLT Scenario
     Then Run the slt Pipeline in Runtime
     Then Open Logs of SLT Pipeline
     Then Wait till SLT pipeline is in running state and no error occurs
+    Then Close logs and stop the pipeline
     Then Get Count of no of records transferred from SLT to BigQuery in "<table>"
     Then User is able to validate record count in BQ matches with count in SAP
     Examples:
@@ -49,7 +50,7 @@ Feature:Run Time SLT Scenario
     @SLT @Run-Time @Sanity
     Scenario Outline: User configured SLT job in LTRC and executes pipeline in Initial Load Mode
     When User crates new MTID on "Automation" SAP
-    When User updates mtid config in /GOOG/CDF_R_SLT_SETTINGS program
+    When User updates mtid config in CDF_R_SLT_SETTINGS program
     Then Update mass transfer id table: "<table>" job mode to "stop_load"
     Given Open CDF replication and initiate pipeline creation
     When User fetches the record count of table : "<table>" from SAP
@@ -68,6 +69,7 @@ Feature:Run Time SLT Scenario
     Then Run the slt Pipeline in Runtime
     Then Open Logs of SLT Pipeline
     Then Wait till SLT pipeline is in running state and no error occurs
+    Then Close logs and stop the pipeline
     Then Get Count of no of records transferred from SLT to BigQuery in "<table>"
     Then User is able to validate record count in BQ matches with count in SAP
     Examples:
@@ -77,13 +79,13 @@ Feature:Run Time SLT Scenario
       | t006a   | initial_load    |
       | t023t   | initial_load    |
       | t023    | initial_load    |
-      | vbap    | initial_load    |
+#      | vbap    | initial_load    |
 
 
   @SLT @Run-Time
     Scenario Outline: User configured SLT job in LTRC and executes pipeline in Replication
     When User crates new MTID on "Automation" SAP
-    When User updates mtid config in /GOOG/CDF_R_SLT_SETTINGS program
+    When User updates mtid config in CDF_R_SLT_SETTINGS program
     Then Update mass transfer id table: "<table>" job mode to "stop_load"
     Given Open CDF replication and initiate pipeline creation
     When User fetches the record count of table : "<table>" from SAP
@@ -127,7 +129,7 @@ Feature:Run Time SLT Scenario
   @SLT @Run-Time
   Scenario Outline: User is able to verify only replication data transfers when Replicate Existing Data is false
     When User crates new MTID on "Automation" SAP
-    When User updates mtid config in /GOOG/CDF_R_SLT_SETTINGS program
+    When User updates mtid config in CDF_R_SLT_SETTINGS program
     Then Update mass transfer id table: "<table>" job mode to "stop_load"
     Given Open CDF replication and initiate pipeline creation
     When User fetches the record count of table : "<table>" from SAP
