@@ -505,7 +505,7 @@ private static String parent=null;
     }
 
     @Then("{string} the {string} records with {string} in the sap table")
-    public void createTheRecordsInTheODPDatasourceFromJCO(String process, String recordcount, String rfcName)
+    public void createTheRecordsInTheSLTDatasourceFromJCO(String process, String recordcount, String rfcName)
             throws IOException, JCoException, InterruptedException {
         action = process;
         if (action.equalsIgnoreCase("create")) {
